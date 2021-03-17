@@ -31,16 +31,11 @@ export class TaskService {
     return res;
   }
 
-  update(id: string, updateTaskDto: UpdateTaskDto) {
+  async update(id: string, updateTaskDto: UpdateTaskDto) {
     return this.taskModel
       .findOneAndUpdate({ id }, updateTaskDto, {
         new: true,
       })
-      .lean()
-      .projection({
-        _id: 0,
-        _v: 0,
-      });
   }
 
   remove(id: string) {
